@@ -35,27 +35,28 @@ DEEPSEEK_BASE_URL=https://api.deepseek.com
 DEEPSEEK_MODEL=deepseek-chat
 ```
 
-### 3. 在 Android Studio 中配置 MCP
+### 3. 启动服务器
 
-在 Android Studio 的 MCP 配置里添加：
+双击 `run_http.bat`，或者在终端运行：
 
-```json
-{
-  "mcpServers": {
-    "deepseek-translator": {
-      "command": "python",
-      "args": ["path/to/server.py"]
-    }
-  }
-}
+```bash
+python server.py --http
 ```
 
-Android Studio 的 MCP 插件会自动通过 stdio 启动服务器。
+窗口保持开着，服务器跑在 `http://localhost:8765/mcp`。
+
+### 4. 在 Android Studio 中导入
+
+打开 Android Studio → Settings → MCP → **Import JSON file**，选择项目里的 `mcp-config.json`。
+
+看到 `Successfully connected to MCP server DeepSeek Translator` 就成功了。
 
 ## 文件结构
 
 ```
-├── server.py          # MCP 服务器（~100 行）
+├── server.py          # MCP 服务器（~120 行）
+├── run_http.bat       # Windows 一键启动脚本
+├── mcp-config.json    # Android Studio 导入用配置文件
 ├── requirements.txt   # Python 依赖
 ├── .env.example       # 配置模板
 └── .env               # 你的密钥（不提交到 git）
