@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "DeepSeek Translator": {
+      "httpUrl": "http://localhost:8765/mcp"
+    }
+  }
+}

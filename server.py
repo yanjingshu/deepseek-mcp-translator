@@ -100,4 +100,24 @@ async def deepseek_chat(
 
 # ── 入口 ────────────────────────────────────────────────────────────────────
 if __name__ == "__main__":
-    mcp.run()
+    import argparse
+
+    parser = argparse.ArgumentParser(description="DeepSeek MCP Role Translator")
+    parser.add_argument(
+        "--http",
+        action="store_true",
+        help="使用 HTTP 模式（默认 stdio）",
+    )
+    parser.add_argument(
+        "--port",
+        type=int,
+        default=8765,
+        help="HTTP 模式端口（默认 8765）",
+    )
+    args = parser.parse_args()
+
+    if args.http:
+        print(f"HTTP 模式启动: http://localhost:{args.port}/mcp")
+        mcp.run(transport="streamable-http", port=args.port)
+    else:
+        mcp.run()
